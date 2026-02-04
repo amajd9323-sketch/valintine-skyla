@@ -1,86 +1,41 @@
-:root {
-    --neon: #00ff88;
-    --dark-bg: #0a0a0a;
+:root { --neon: #00ff88; --bg: #0d0d0d; }
+
+body { background: var(--bg); color: white; font-family: sans-serif; margin: 0; padding-top: 80px; }
+
+/* حل مشكلة الشعارات */
+img { 
+    width: 35px; height: 35px; background: white; 
+    border-radius: 6px; padding: 2px; object-fit: contain; 
 }
 
-body {
-    background-color: var(--dark-bg);
-    color: white;
-    font-family: 'Segoe UI', sans-serif;
-    margin: 0; padding-top: 80px;
+/* التنسيق العلوي */
+.navbar { 
+    position: fixed; top: 0; width: 100%; height: 70px; background: #000;
+    display: flex; justify-content: space-around; align-items: center; 
+    border-bottom: 2px solid var(--neon); z-index: 1000;
 }
-
-/* حل مشكلة الشعارات المكسورة والشفافة */
-img {
-    width: 35px; height: 35px;
-    object-fit: contain;
-    background: white; /* تبرز الشعارات الداكنة */
-    border-radius: 5px;
-    padding: 3px;
-    margin-left: 10px;
-}
-
-/* تنسيق الـ 3D ومنع تداخل النصوص */
-.match-card {
-    background: #111;
-    border: 1px solid rgba(0, 255, 136, 0.2);
-    border-radius: 20px;
-    padding: 25px;
-    text-align: center;
-    transition: 0.5s;
-    transform-style: preserve-3d;
-}
-
-.match-card:hover {
-    transform: rotateY(10deg) translateY(-10px);
-    border-color: var(--neon);
-    box-shadow: 0 10px 30px rgba(0, 255, 136, 0.2);
-}
-
-.score-row {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 20px 0;
-}
-
-.team {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    flex: 1;
-}
-
-.team img {
-    width: 60px !important;
-    height: 60px !important;
-}
-
-.score-badge {
-    background: #000;
-    color: var(--neon);
-    padding: 10px 20px;
-    border-radius: 10px;
-    font-size: 24px;
-    font-weight: bold;
-}
+.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); font-size: 24px; }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; }
+.nav-links a.active { color: var(--neon); font-weight: bold; }
 
 /* تنسيق الجدول */
-.stats-table {
-    width: 90%;
-    margin: 20px auto;
-    border-collapse: collapse;
-    background: #151515;
-    border-radius: 15px;
-    overflow: hidden;
-}
-
+.table-container { padding: 20px; max-width: 900px; margin: auto; }
+.stats-table { width: 100%; border-collapse: collapse; background: #151515; border-radius: 15px; overflow: hidden; }
 .stats-table th { background: #222; color: var(--neon); padding: 15px; }
 .stats-table td { padding: 12px; border-bottom: 1px solid #222; text-align: center; }
+.team-cell { display: flex; align-items: center; gap: 10px; justify-content: flex-start; padding-right: 20px; }
 
-.team-cell {
-    display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    font-weight: bold;
+/* تنسيق الكروت (إصلاح تداخل النصوص) */
+.matches-grid { display: flex; justify-content: center; padding: 20px; }
+.match-card { 
+    background: #1a1a1a; width: 350px; padding: 25px; border-radius: 20px;
+    border: 1px solid rgba(0,255,136,0.2); text-align: center;
+    transition: 0.4s; transform-style: preserve-3d;
 }
+.match-card:hover { transform: rotateY(10deg) translateY(-10px); border-color: var(--neon); }
+.match-teams { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; }
+.team-box { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
+.team-box img { width: 60px; height: 60px; }
+.match-score { font-size: 28px; font-weight: bold; color: var(--neon); background: #000; padding: 10px; border-radius: 10px; }
+.btn-watch { width: 100%; padding: 12px; background: var(--neon); border: none; border-radius: 10px; font-weight: bold; cursor: pointer; }
