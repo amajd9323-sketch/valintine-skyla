@@ -1,60 +1,109 @@
-:root { --neon: #00ff88; --bg: #0a0a0a; }
-
-body { 
-    background: var(--bg); 
-    color: white; 
-    font-family: 'Segoe UI', sans-serif; 
-    margin: 0; 
-    padding-top: 80px; 
-    direction: rtl; 
+:root {
+    --neon: #00ff88;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+    --bg: #050505;
 }
 
-/* حل مشكلة الشعارات وتداخلها */
-img { 
-    width: 35px; 
-    height: 35px; 
-    background: white; 
-    border-radius: 6px; 
-    padding: 2px; 
-    object-fit: contain; 
+body {
+    background-color: var(--bg);
+    color: white;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding-top: 80px;
+    direction: rtl;
+    overflow-x: hidden;
 }
 
-.navbar { 
-    position: fixed; 
-    top: 0; 
-    width: 100%; 
-    height: 70px; 
-    background: #000; 
-    display: flex; 
-    justify-content: space-around; 
-    align-items: center; 
-    border-bottom: 2px solid var(--neon); 
-    z-index: 1000; 
+/* تحسين شريط التنقل */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-bottom: 1px solid var(--neon);
+    z-index: 1000;
 }
 
-.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); font-size: 24px; }
-.nav-links { display: flex; list-style: none; gap: 20px; }
-.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; }
-
-/* تنسيق الجدول */
-.table-container { padding: 20px; max-width: 900px; margin: auto; }
-.stats-table { width: 100%; border-collapse: collapse; background: #151515; border-radius: 15px; overflow: hidden; }
-.stats-table th { background: #222; color: var(--neon); padding: 15px; }
-.stats-table td { padding: 12px; border-bottom: 1px solid #222; text-align: center; }
-.team-cell { display: flex; align-items: center; gap: 10px; justify-content: flex-start; padding-right: 20px; }
-
-/* تنسيق بطاقات المباريات 3D لمنع التداخل */
-.match-card { 
-    background: #1a1a1a; 
-    width: 350px; 
-    padding: 25px; 
-    border-radius: 20px; 
-    border: 1px solid rgba(0,255,136,0.2); 
-    text-align: center; 
-    transition: 0.4s; 
-    margin: auto; 
+.logo span {
+    color: var(--neon);
+    text-shadow: 0 0 15px var(--neon);
+    font-weight: bold;
+    font-size: 1.5rem;
 }
-.match-teams { display: flex; justify-content: space-between; align-items: center; margin: 20px 0; }
-.team-box { display: flex; flex-direction: column; align-items: center; gap: 10px; flex: 1; }
-.team-box img { width: 60px; height: 60px; }
-.match-score { font-size: 28px; font-weight: bold; color: var(--neon); }
+
+/* حاوية البطاقات الـ 3D */
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    perspective: 1000px; /* يعطي عمق للمشهد */
+}
+
+.match-card {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--border);
+    border-radius: 30px;
+    padding: 30px;
+    width: 400px;
+    text-align: center;
+    transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1), box-shadow 0.6s;
+    transform-style: preserve-3d; /* يسمح للعناصر الداخلية بالبروز */
+    box-shadow: 0 25px 50px rgba(0,0,0,0.5);
+}
+
+.match-card:hover {
+    transform: rotateY(15deg) rotateX(10deg) translateY(-10px);
+    box-shadow: 0 0 30px rgba(0, 255, 136, 0.3);
+    border-color: var(--neon);
+}
+
+/* جعل الشعارات تبرز للخارج عند الـ Hover */
+.match-teams {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 30px 0;
+    transform: translateZ(50px); /* يبرز الشعارات للأمام */
+}
+
+.team-box img {
+    width: 80px;
+    height: 80px;
+    background: white;
+    padding: 10px;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.match-score {
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--neon);
+    text-shadow: 0 0 10px var(--neon);
+}
+
+.btn-watch {
+    background: var(--neon);
+    color: black;
+    border: none;
+    padding: 15px 30px;
+    border-radius: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    width: 100%;
+    transform: translateZ(30px);
+    transition: 0.3s;
+}
+
+.btn-watch:hover {
+    filter: brightness(1.2);
+    letter-spacing: 1px;
+}

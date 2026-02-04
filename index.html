@@ -4,37 +4,39 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <title>غزاوي كورة - الرئيسية</title>
+    <title>غزاوي كورة - 3D Experience</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <nav class="navbar">
         <div class="logo">غزاوي <span>كورة</span></div>
-        <ul class="nav-links">
-            <li><a href="index.html" class="active">الرئيسية</a></li>
-            <li><a href="table.html">ترتيب الدوريات</a></li>
-            <li><a href="news.html">الأخبار</a></li>
+        <ul class="nav-links" style="display:flex; list-style:none; gap:20px;">
+            <li><a href="index.html" style="color:var(--neon); text-decoration:none;">الرئيسية</a></li>
+            <li><a href="table.html" style="color:white; text-decoration:none;">الترتيب</a></li>
         </ul>
     </nav>
 
     <div class="main-container">
-        <div class="matches-grid">
-            <div class="match-card">
-                <header class="match-header">أهم المباريات</header>
-                <div class="match-teams">
-                    <div class="team-box">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg">
-                        <span>ليفربول</span>
-                    </div>
-                    <div class="match-score">4 - 0</div>
-                    <div class="team-box">
-                        <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg">
-                        <span>برشلونة</span>
-                    </div>
+        <div class="match-card">
+            <header style="color: #aaa; font-size: 0.9rem; margin-bottom: 10px;">إياب نصف النهائي</header>
+            <h2 style="margin: 0;">أهم المباريات</h2>
+            
+            <div class="match-teams">
+                <div class="team-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg">
+                    <p>ليفربول</p>
                 </div>
-                <p class="match-note">ريمونتادا تاريخية</p>
-                <button class="btn-watch">مشاهدة الأهداف</button>
+                
+                <div class="match-score">4 - 0</div>
+                
+                <div class="team-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg">
+                    <p>برشلونة</p>
+                </div>
             </div>
+
+            <p style="color: #888; font-style: italic; margin-bottom: 25px;">ليلة المعجزة في أنفيلد</p>
+            <button class="btn-watch">مشاهدة الملخص</button>
         </div>
     </div>
 </body>
