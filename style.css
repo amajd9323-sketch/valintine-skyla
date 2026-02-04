@@ -49,32 +49,3 @@ img {
     transition: 0.3s;
     box-shadow: 0 0 15px rgba(0, 255, 136, 0.1);
 }
-/* إصلاحات الشعارات الظاهرة في صورك */
-.team-cell img {
-    width: 30px !important;
-    height: 30px !important;
-    object-fit: contain;
-    margin-left: 12px;
-    background: white; /* ضروري لظهور الشعارات المفرغة */
-    border-radius: 50%;
-    padding: 3px;
-    border: 1px solid var(--neon-green);
-}
-
-.team-cell {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    font-weight: bold;
-    color: white;
-}
-
-/* تأثير الـ 3D والزجاج */
-.table-container {
-    background: rgba(255, 255, 255, 0.02);
-    backdrop-filter: blur(10px);
-    border-radius: 20px;
-    padding: 20px;
-    margin: 20px;
-    border: 1px solid rgba(0, 255, 136, 0.2);
-}
