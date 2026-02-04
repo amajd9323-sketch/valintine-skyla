@@ -1,0 +1,518 @@
+:root {
+    --neon: #00ff88;
+    --glass: rgba(255, 255, 255, 0.05);
+    --border: rgba(255, 255, 255, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Inter', 'Segoe UI', sans-serif;
+    padding-top: 150px; min-height: 100vh;
+    display: flex; flex-direction: column; overflow-x: hidden;
+    perspective: 1500px; /* لتعزيز عمق الـ 3D */
+}
+
+/* الناف بار الاحترافي */
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 75px;
+    background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 6%; border-bottom: 2px solid var(--neon); z-index: 2000;
+}
+.logo { font-size: 24px; font-weight: 800; }
+.logo span { color: var(--neon); text-shadow: 0 0 15px var(--neon); }
+.nav-links { display: flex; list-style: none; gap: 25px; }
+.nav-links a { color: #aaa; text-decoration: none; font-size: 15px; transition: 0.3s; }
+.nav-links a.active, .nav-links a:hover { color: var(--neon); }
+
+/* شريط الأخبار */
+.ticker-wrap {
+    position: fixed; top: 75px; width: 100%; background: rgba(0, 255, 136, 0.05);
+    border-bottom: 1px solid var(--border); overflow: hidden; z-index: 1500; padding: 12px 0;
+}
+.ticker { display: inline-block; white-space: nowrap; animation: ticker-fly 30s linear infinite; }
+.ticker-item { padding: 0 40px; color: var(--neon); font-size: 14px; font-weight: 600; }
+@keyframes ticker-fly { 0% { transform: translateX(100%); } 100% { transform: translateX(-100%); } }
+
+/* حاوية البطاقات الـ 3D */
+.main-container { flex: 1; display: flex; justify-content: center; align-items: flex-start; padding: 40px 20px; }
+.matches-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+    gap: 40px; width: 100%; max-width: 1200px;
+}
+
+/* تصميم الزجاج والبعد الثالث */
+.card-3d-container { perspective: 1000px; }
+
+.match-card {
+    position: relative; background: var(--glass);
+    border-radius: 30px; padding: 40px 30px;
+    border: 1px solid var(--border); backdrop-filter: blur(15px);
+    transition: all 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+    transform-style: preserve-3d;
+    box-shadow: 0 25px 50px rgba(0,0,0,0.4);
+}
+
+.match-card:hover {
+    transform: rotateY(-15deg) rotateX(10deg) translateY(-10px);
+    border-color: var(--neon);
+    box-shadow: 20px 40px 60px rgba(0,0,0,0.6), 0 0 20px rgba(0, 255, 136, 0.2);
+}
+
+.highlight-card { border: 1.5px solid var(--neon); }
+
+/* المحتوى الطافي */
+.card-content { transform: translateZ(60px); }
+
+.match-meta { color: var(--neon); font-size: 12px; font-weight: 700; text-transform: uppercase; margin-bottom: 30px; opacity: 0.8; }
+
+.score-row { display: flex; justify-content: space-around; align-items: center; margin-bottom: 30px; }
+
+.team img { 
+    width: 85px !important; height: 85px !important; 
+    object-fit: contain; filter: drop-shadow(0 15px 15px rgba(0,0,0,0.5));
+}
+.team span { display: block; margin-top: 15px; font-weight: 700; font-size: 16px; }
+
+.score-badge {
+    background: rgba(0,0,0,0.5); color: var(--neon); padding: 12px 25px;
+    border-radius: 15px; font-size: 32px; font-weight: 900; border: 1px solid var(--border);
+}
+.score-badge.win { background: var(--neon); color: #000; box-shadow: 0 0 30px var(--neon); border: none; }
+
+.match-desc { font-size: 13px; color: #888; margin-bottom: 35px; font-style: italic; }
+
+/* الأزرار المضيئة */
+.btn-3d {
+    background: var(--neon); color: #000; border: none; padding: 18px;
+    width: 100%; border-radius: 15px; font-weight: 800; cursor: pointer;
+    transition: 0.4s; transform: translateZ(30px);
+}
+.btn-3d.outline { background: transparent; color: var(--neon); border: 2px solid var(--neon); }
+.btn-3d:hover { transform: translateZ(50px) scale(1.05); box-shadow: 0 15px 30px rgba(0,255,136,0.3); }
+
+.site-footer { padding: 60px; text-align: center; color: #444; font-size: 13px; letter-spacing: 1px; }
+
+/* إصلاح العرض على الجوال */
+@media (max-width: 768px) {
+    body { padding-top: 160px; }
+    .matches-grid { grid-template-columns: 1fr; }
+    .match-card { padding: 30px 20px; }
+    .team img { width: 65px !important; height: 65px !important; }
+    .score-badge { font-size: 24px; }
+}
+/* تنسيق جدول الترتيب 3D */
+.table-3d-wrap {
+    width: 100%;
+    max-width: 900px;
+    transform-style: preserve-3d;
+    perspective: 1000px;
+}
+
+.glass-table-container {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transform: rotateX(5deg); /* تمييل خفيف للجدول */
+    box-shadow: 0 30px 60px rgba(0,0,0,0.5);
+}
+
+.standings-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+.standings-table th {
+    color: var(--neon);
+    padding: 15px;
+    border-bottom: 2px solid rgba(0, 255, 136, 0.2);
+}
+
+.standings-table td {
+    padding: 12px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* إصلاح ظهور الشعارات */
+.team-cell {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    text-align: right;
+}
+
+.team-cell img {
+    width: 30px !important; /* حجم الشعار الصغير داخل الجدول */
+    height: 30px !important;
+    object-fit: contain;
+    filter: drop-shadow(0 0 5px rgba(255,255,255,0.2));
+}
+
+.points {
+    font-weight: bold;
+    color: var(--neon);
+}
+
+.table-title {
+    text-align: center;
+    color: #fff;
+    margin-bottom: 20px;
+    text-shadow: 0 0 10px var(--neon);
+}
+/* إعدادات الخلفية والخطوط */
+body {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1522778119026-d647f0596c20?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Segoe UI', sans-serif;
+    padding-top: 100px; min-height: 100vh;
+}
+
+/* الناف بار */
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 70px;
+    background: rgba(0, 0, 0, 0.9); display: flex; 
+    justify-content: space-between; align-items: center;
+    padding: 0 5%; border-bottom: 2px solid #00ff88; z-index: 1000;
+}
+.logo span { color: #00ff88; text-shadow: 0 0 10px #00ff88; }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; }
+.nav-links a.active { color: #00ff88; font-weight: bold; }
+
+/* حاوية الجدول 3D */
+.main-container { display: flex; justify-content: center; padding: 40px 15px; }
+.table-3d-wrap { width: 100%; max-width: 950px; }
+.table-title { text-align: center; margin-bottom: 25px; color: #fff; text-shadow: 0 0 15px #00ff88; }
+
+.glass-table-container {
+    background: rgba(15, 15, 15, 0.9);
+    backdrop-filter: blur(10px);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.8);
+    overflow-x: auto; /* للسماح بالتمرير في الجوال */
+}
+
+.standings-table { width: 100%; border-collapse: collapse; min-width: 600px; }
+.standings-table th { color: #00ff88; padding: 15px; text-align: center; border-bottom: 2px solid #333; }
+.standings-table td { padding: 12px; text-align: center; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+/* تنسيق الشعارات والنصوص */
+.team-cell { display: flex; align-items: center; gap: 15px; text-align: right; padding-right: 20px !important; }
+.team-cell img { 
+    width: 35px !important; height: 35px !important; 
+    object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+}
+.team-cell span { font-weight: 600; font-size: 15px; }
+
+.points { color: #00ff88; font-weight: 800; font-size: 18px; }
+
+/* تحسينات للجوال */
+@media (max-width: 600px) {
+    .team-cell span { font-size: 13px; }
+    .team-cell img { width: 25px !important; height: 25px !important; }
+}
+/* الألوان والأساسيات */
+:root {
+    --neon: #00ff88;
+    --glass-bg: rgba(15, 15, 15, 0.92);
+    --border-light: rgba(255, 255, 255, 0.1);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif;
+    padding-top: 120px; min-height: 100vh;
+}
+
+/* الناف بار */
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 70px;
+    background: #000; border-bottom: 2px solid var(--neon);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; z-index: 1000;
+}
+.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+.nav-links a.active, .nav-links a:hover { color: var(--neon); }
+
+/* حاوية الجدول 3D */
+.main-container { display: flex; justify-content: center; padding: 20px; perspective: 1000px; }
+
+.table-3d-card {
+    width: 100%; max-width: 1000px;
+    transform: rotateX(2deg);
+    transition: transform 0.5s ease;
+}
+
+.table-header { text-align: center; margin-bottom: 30px; text-shadow: 0 0 15px var(--neon); font-size: 22px; }
+
+.glass-table-container {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    border-radius: 20px;
+    border: 1px solid var(--border-light);
+    padding: 25px;
+    box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    overflow-x: auto; /* لمنع التداخل في الجوال */
+}
+
+/* إصلاح الجدول */
+.standings-table { width: 100%; border-collapse: collapse; min-width: 700px; }
+.standings-table th { color: var(--neon); padding: 15px; border-bottom: 2px solid #333; font-size: 14px; }
+.standings-table td { padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+
+/* حل مشكلة الشعارات والنصوص */
+.team-info { display: flex; align-items: center; gap: 15px; text-align: right !important; padding-right: 30px !important; }
+.team-info img { 
+    width: 32px !important; height: 32px !important; 
+    object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+}
+.team-info span { font-weight: 600; font-size: 15px; white-space: nowrap; }
+
+.points-cell { color: var(--neon); font-weight: 900; font-size: 18px; }
+
+/* تمييز المراكز الأولى */
+.top-rank { background: rgba(0, 255, 136, 0.03); }
+
+/* التذييل */
+.footer { padding: 40px; text-align: center; color: #555; font-size: 12px; }
+
+/* استجابة الجوال */
+@media (max-width: 768px) {
+    body { padding-top: 140px; }
+    .table-header { font-size: 18px; }
+    .glass-table-container { padding: 15px; }
+}
+:root {
+    --neon: #00ff88;
+    --glass: rgba(15, 15, 15, 0.95);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Segoe UI', sans-serif;
+    padding-top: 100px;
+}
+
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 70px;
+    background: #000; border-bottom: 2px solid var(--neon);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; z-index: 1000;
+}
+.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; }
+.nav-links a.active { color: var(--neon); }
+
+.main-container { display: flex; justify-content: center; padding: 20px; perspective: 1200px; }
+
+.table-3d-card { width: 100%; max-width: 1000px; transform: rotateX(2deg); }
+.table-header { text-align: center; margin-bottom: 30px; text-shadow: 0 0 15px var(--neon); }
+
+.glass-table-container {
+    background: var(--glass);
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px; box-shadow: 0 30px 60px rgba(0,0,0,0.7);
+    overflow-x: auto; /* يمنع التداخل في الجوال */
+}
+
+.standings-table { width: 100%; border-collapse: collapse; min-width: 750px; }
+.standings-table th { color: var(--neon); padding: 15px; border-bottom: 2px solid #333; font-size: 14px; }
+.standings-table td { padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+
+/* إصلاح الشعارات والأسماء */
+.team-info { display: flex; align-items: center; gap: 15px; text-align: right !important; padding-right: 30px !important; }
+.team-info img { width: 32px !important; height: 32px !important; object-fit: contain; }
+.team-info span { font-weight: 600; font-size: 15px; white-space: nowrap; }
+
+.points-cell { color: var(--neon); font-weight: 900; font-size: 18px; }
+.leader { background: rgba(0, 255, 136, 0.05); } /* تمييز المتصدر أرسنال */
+:root {
+    --neon: #00ff88;
+    --glass: rgba(18, 18, 18, 0.95);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Segoe UI', sans-serif;
+    padding-top: 80px;
+}
+
+/* الناف بار */
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 70px;
+    background: #000; border-bottom: 2px solid var(--neon);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; z-index: 1000;
+}
+.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; }
+.nav-links a.active { color: var(--neon); font-weight: bold; }
+
+/* الحاوية الرئيسية */
+.main-container { display: flex; justify-content: center; padding: 20px; perspective: 1000px; }
+
+.table-3d-card { width: 100%; max-width: 1100px; }
+.table-header { text-align: center; margin-bottom: 25px; text-shadow: 0 0 15px var(--neon); font-size: 22px; }
+
+.glass-table-container {
+    background: var(--glass);
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+    padding: 20px; box-shadow: 0 30px 60px rgba(0,0,0,0.8);
+    overflow-x: auto; /* مهم جداً لعرض الـ 20 فريقاً في الجوال */
+}
+
+.standings-table { width: 100%; border-collapse: collapse; min-width: 800px; }
+.standings-table th { color: var(--neon); padding: 15px; border-bottom: 2px solid #333; font-size: 14px; text-align: center; }
+.standings-table td { padding: 12px 8px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; font-size: 15px; }
+
+/* حل مشكلة أستون فيلا والشعارات */
+.team-info { display: flex; align-items: center; gap: 12px; text-align: right !important; padding-right: 20px !important; }
+.team-info img { 
+    width: 30px !important; height: 30px !important; 
+    object-fit: contain; filter: drop-shadow(0 0 5px rgba(255,255,255,0.1));
+}
+.team-info span { font-weight: 500; white-space: nowrap; }
+
+.points-cell { color: var(--neon); font-weight: 800; font-size: 17px; }
+
+/* تمييز المتصدر والمناطق */
+.leader { background: rgba(0, 255, 136, 0.07); }
+tr:nth-child(-n+4) { border-right: 4px solid var(--neon); } /* تمييز مربع الأبطال */
+tr:nth-last-child(-n+3) { border-right: 4px solid #ff4d4d; } /* تمييز الهبوط */
+
+/* استجابة الجوال */
+@media (max-width: 768px) {
+    body { padding-top: 130px; }
+    .table-header { font-size: 18px; }
+}
+:root {
+    --neon: #00ff88;
+    --win-color: #00ff88;
+    --loss-color: #ff4d4d;
+    --draw-color: #888;
+}
+
+/* ... (نفس الأكواد السابقة للناف بار والجدول) ... */
+
+/* تنسيق أيقونات الحالة (آخر 5 مباريات) */
+.form-row {
+    display: flex;
+    gap: 5px;
+    justify-content: center;
+}
+
+.form-row span {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 10px;
+    font-weight: bold;
+    color: #000;
+}
+
+.win { background-color: var(--win-color); box-shadow: 0 0 5px var(--win-color); }
+.loss { background-color: var(--loss-color); box-shadow: 0 0 5px var(--loss-color); }
+.draw { background-color: var(--draw-color); color: #fff !important; }
+
+/* حل مشكلة صورة أستون فيلا المكسورة */
+.team-info img {
+    width: 32px !important;
+    height: 32px !important;
+    object-fit: contain;
+}
+:root {
+    --neon: #00ff88;
+    --win: #00ff88;
+    --loss: #ff4d4d;
+    --draw: #888;
+    --bg-glass: rgba(18, 18, 18, 0.95);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+    background: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), 
+                url('https://images.unsplash.com/photo-1508098682722-e99c43a406b2?auto=format&fit=crop&w=1350&q=80');
+    background-size: cover; background-attachment: fixed;
+    color: #fff; font-family: 'Segoe UI', Tahoma, sans-serif;
+    padding-top: 80px;
+}
+
+.navbar {
+    position: fixed; top: 0; width: 100%; height: 70px;
+    background: #000; border-bottom: 2px solid var(--neon);
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 5%; z-index: 1000;
+}
+
+.logo span { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
+.nav-links { display: flex; list-style: none; gap: 20px; }
+.nav-links a { color: #ccc; text-decoration: none; font-size: 14px; transition: 0.3s; }
+.nav-links a.active, .nav-links a:hover { color: var(--neon); }
+
+.main-container { display: flex; justify-content: center; padding: 20px; }
+.table-3d-card { width: 100%; max-width: 1200px; }
+.table-header { text-align: center; margin-bottom: 25px; text-shadow: 0 0 15px var(--neon); font-size: 24px; }
+
+.glass-table-container {
+    background: var(--bg-glass);
+    border-radius: 20px; border: 1px solid rgba(255,255,255,0.1);
+    padding: 25px; box-shadow: 0 25px 50px rgba(0,0,0,0.8);
+    overflow-x: auto;
+}
+
+.standings-table { width: 100%; border-collapse: collapse; min-width: 900px; }
+.standings-table th { color: var(--neon); padding: 15px; border-bottom: 2px solid #333; font-size: 14px; }
+.standings-table td { padding: 15px 10px; border-bottom: 1px solid rgba(255,255,255,0.05); text-align: center; }
+
+.team-info { display: flex; align-items: center; gap: 15px; text-align: right !important; padding-right: 30px !important; }
+.team-info img { width: 32px !important; height: 32px !important; object-fit: contain; }
+.team-info span { font-weight: 600; font-size: 15px; white-space: nowrap; }
+
+.points-cell { color: var(--neon); font-weight: 900; font-size: 18px; }
+
+/* تنسيق أيقونات الحالة */
+.form-row { display: flex; gap: 6px; justify-content: center; }
+.form-row span {
+    width: 24px; height: 24px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 11px; font-weight: bold; color: #000;
+}
+.win { background: var(--win); box-shadow: 0 0 8px var(--win); }
+.loss { background: var(--loss); box-shadow: 0 0 8px var(--loss); }
+.draw { background: var(--draw); color: #fff !important; }
+
+.leader { background: rgba(0, 255, 136, 0.05); }
+
+@media (max-width: 768px) {
+    body { padding-top: 130px; }
+}
