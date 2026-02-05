@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="referrer" content="no-referrer">
-    <title>غزاوي كورة | عالم الكرة بين يديك</title>
+    <title>غزاوي كورة - الرئيسية</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700&display=swap" rel="stylesheet">
 </head>
@@ -17,25 +17,25 @@
         </ul>
     </nav>
 
-    <main class="main-content">
-        <h2 style="color: var(--neon-green)">أهم نتائج البطولات</h2>
+    <div class="container">
+        <h1 class="section-title">أهم نتائج البطولات</h1>
         
         <div class="match-card">
             <p>دوري أبطال أوروبا - إياب</p>
-            <div class="teams-row">
-                <div class="team">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg" alt="ليفربول">
-                    <p>ليفربول</p>
-                </div>
-                <div class="score">4 - 0</div>
-                <div class="team">
-                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg" alt="برشلونة">
+            <div class="teams-display">
+                <div class="team-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/4/47/FC_Barcelona_%28crest%29.svg">
                     <p>برشلونة</p>
+                </div>
+                <div class="result">0 - 4</div>
+                <div class="team-box">
+                    <img src="https://upload.wikimedia.org/wikipedia/en/0/0c/Liverpool_FC.svg">
+                    <p>ليفربول</p>
                 </div>
             </div>
             <p>ريمونتادا تاريخية في أنفيلد</p>
-            <button class="btn-action" onclick="window.open('https://www.youtube.com', '_blank')">مشاهدة الأهداف</button>
+            <button class="btn-neon" onclick="location.href='https://www.youtube.com'">مشاهدة الأهداف</button>
         </div>
-    </main>
+    </div>
 </body>
 </html>
