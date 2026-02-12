@@ -3,127 +3,98 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Skyla ❤️</title>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+    <title>Para sa aking Skyla ❤️</title>
     <style>
         :root {
-            --primary: #ff4d6d;
-            --secondary: #ff85a1;
-            --soft-pink: #fff0f3;
-            --text: #2d3436;
+            --primary: #ff85a1;
+            --accent: #ff4d6d;
+            --text-dark: #4a4e69;
+            --bg: #fffafb;
         }
-
         * { box-sizing: border-box; }
-
         body {
-            margin: 0; padding: 10px; display: flex; justify-content: center; align-items: center;
-            min-height: 100vh; background: #fff5f7;
-            font-family: 'Quicksand', sans-serif;
-            color: var(--text);
-            overflow-x: hidden;
-            /* خلفية متحركة ناعمة */
-            background: linear-gradient(135deg, #fff5f7 0%, #ffeef1 100%);
+            margin: 0; padding: 20px 10px; display: flex; justify-content: center; align-items: center;
+            min-height: 100vh; background: var(--bg); font-family: 'Segoe UI', Tahoma, sans-serif;
+            color: var(--text-dark); overflow-x: hidden;
         }
-
-        /* حاوية الصفحة بتصميم زجاجي (Glassmorphism) */
         .container {
-            width: 100%; max-width: 400px; background: rgba(255, 255, 255, 0.9);
-            padding: 40px 25px; border-radius: 40px;
-            box-shadow: 0 20px 40px rgba(255, 77, 109, 0.1);
-            text-align: center; border: 1px solid rgba(255, 255, 255, 0.3);
-            backdrop-filter: blur(10px);
+            width: 100%; max-width: 450px; background: white; padding: 40px 25px;
+            border-radius: 40px; box-shadow: 0 20px 50px rgba(255, 181, 194, 0.25);
+            text-align: center; position: relative; z-index: 10;
         }
-
         .profile-frame {
-            width: 140px; height: 140px; border-radius: 50%; padding: 6px;
-            background: linear-gradient(45deg, var(--primary), var(--secondary));
-            margin: 0 auto 25px; box-shadow: 0 10px 20px rgba(255, 77, 109, 0.2);
+            width: 130px; height: 130px; border-radius: 50%; padding: 4px;
+            background: linear-gradient(135deg, #ffb5c2, #d4a373); margin: 0 auto 20px;
         }
-
-        .profile-img {
-            width: 100%; height: 100%; border-radius: 50%; object-fit: cover;
-            border: 4px solid white;
-        }
-
-        /* خط رومانسي للعنوان */
-        h1 { 
-            font-family: 'Dancing Script', cursive;
-            color: var(--primary); font-size: 2.8rem; margin: 10px 0;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
-        }
-
-        .apology-text { font-size: 1.1rem; line-height: 1.7; color: #555; margin-bottom: 30px; }
+        .profile-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; border: 4px solid white; }
         
-        .timeline {
-            margin: 30px 0; padding: 25px 15px; background: var(--soft-pink);
-            border-radius: 25px; position: relative;
+        h1 { color: var(--accent); font-size: 2rem; margin: 15px 0; font-weight: 800; }
+        
+        .apology-content {
+            text-align: left; background: #fffcfc; padding: 25px; border-radius: 20px;
+            border-left: 5px solid var(--accent); margin-bottom: 25px;
+        }
+        .apology-text { 
+            font-size: 1.05rem; color: #555; line-height: 1.8; margin: 0;
+            font-style: italic;
+        }
+        .tagalog-msg {
+            margin-top: 20px; padding-top: 15px; border-top: 1px dashed #ffd1dc;
+            color: var(--accent); font-weight: 500;
         }
 
-        .timeline-title { 
-            font-weight: 600; color: var(--primary); font-size: 0.9rem;
-            margin-bottom: 20px; display: block; letter-spacing: 2px;
-        }
+        .timer-box { background: #fff5f7; border-radius: 20px; padding: 20px; margin-bottom: 20px; border: 1px solid #fce4e9; }
+        .timer-label { font-size: 0.75rem; font-weight: bold; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; }
+        #timer { font-size: 1.4rem; font-weight: 700; margin-top: 8px; color: var(--accent); }
 
-        .date-item {
-            display: flex; align-items: center; justify-content: space-between;
-            margin-bottom: 15px; background: white; padding: 12px 15px;
-            border-radius: 15px; box-shadow: 0 4px 10px rgba(0,0,0,0.02);
-            transition: 0.3s;
-        }
+        .timeline { background: #fffafa; border-radius: 20px; padding: 15px; border: 1px solid #fce4e9; margin-bottom: 25px; }
+        .date-item { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; font-size: 0.95rem; }
+        .date-badge { background: var(--accent); color: white; padding: 4px 12px; border-radius: 12px; font-weight: bold; }
 
-        .date-badge {
-            background: var(--primary); color: white; padding: 6px 14px;
-            border-radius: 12px; font-weight: bold; font-size: 0.85rem;
-        }
-
-        /* زر بتأثير نبضي ناعم */
         .btn-reset {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white; border: none; padding: 20px; border-radius: 50px;
-            font-size: 1.25rem; font-weight: 600; cursor: pointer; transition: 0.4s;
-            width: 100%; margin-top: 15px;
-            box-shadow: 0 10px 20px rgba(255, 77, 109, 0.3);
+            background: linear-gradient(135deg, var(--primary), var(--accent)); color: white; border: none;
+            padding: 20px; border-radius: 50px; font-size: 1.2rem; font-weight: bold; width: 100%; 
+            cursor: pointer; transition: 0.3s; box-shadow: 0 10px 25px rgba(255, 77, 109, 0.3);
         }
 
-        .btn-reset:hover { transform: translateY(-3px); box-shadow: 0 15px 25px rgba(255, 77, 109, 0.4); }
+        #memory-gallery { display: none; margin-top: 25px; animation: slideUp 0.8s ease; }
+        .gallery-grid { display: grid; grid-template-columns: 1fr; gap: 25px; margin-top: 20px; }
+        .gallery-item { background: white; padding: 12px; border-radius: 25px; box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+        .gallery-item img { width: 100%; height: auto; border-radius: 18px; display: block; object-fit: contain; max-height: 550px; }
 
-        #successContent { display: none; animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
-        
-        @keyframes popIn { 
-            from { transform: scale(0.5); opacity: 0; } 
-            to { transform: scale(1); opacity: 1; } 
-        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(40px); } to { opacity: 1; transform: translateY(0); } }
+        .rose { position: fixed; top: -50px; pointer-events: none; z-index: 1; animation: fall linear infinite; }
+        @keyframes fall { to { transform: translateY(110vh) rotate(360deg); } }
 
-        .signature { 
-            margin-top: 45px; padding-top: 20px;
-            border-top: 1px solid #f0f0f0; font-size: 1.1rem; color: #666; 
-        }
-
-        /* توقيع إبراهيم بلمسة مميزة */
-        .signature b { 
-            color: var(--primary); font-size: 1.5rem; 
-            font-family: 'Dancing Script', cursive; margin-left: 5px;
-        }
-
-        .heart { color: var(--primary); display: inline-block; animation: beat 1.2s infinite; }
-        @keyframes beat { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.3); } }
+        .signature { margin-top: 40px; font-size: 0.95rem; color: #bbb; border-top: 1px solid #eee; padding-top: 20px; }
+        .signature b { color: var(--accent); font-size: 1.1rem; }
     </style>
 </head>
 <body>
 
     <div class="container">
-        <div class="profile-frame">
-            <img src="skyla.jpeg" alt="Skyla" class="profile-img">
-        </div>
-        
-        <div id="mainView">
-            <h1>My Dear Skyla ❤️</h1>
-            <p class="apology-text">
-                I know we fight sometimes, but it's only because I care so much. I'm never letting you go. Let's keep building our beautiful life together.
-            </p>
+        <div id="main-content">
+            <div class="profile-frame">
+                <img src="skyla.jpeg" alt="Skyla" class="profile-img">
+            </div>
+            
+            <h1>Mahal kong Skyla.. ❤️</h1>
+            
+            <div class="apology-content">
+                <p class="apology-text">
+                    "I hate every second we spend in silence. You are my best friend and my whole world. I’m truly sorry for the fights and misunderstandings. My heart only wants to see you smile."
+                </p>
+                <p class="apology-text tagalog-msg">
+                    "Patawad sa lahat ng mga pagkakamali ko. Ayokong mag-away tayo dahil ikaw ang pinakamahalagang tao sa buhay ko. Mahal na mahal kita, Skyla."
+                </p>
+            </div>
+
+            <div class="timer-box">
+                <span class="timer-label">Time Spent Together ♾️</span>
+                <div id="timer">Loading...</div>
+            </div>
 
             <div class="timeline">
-                <span class="timeline-title">WHY I'LL ALWAYS STAY ✨</span>
                 <div class="date-item">
                     <span class="date-badge">Sept 2</span>
                     <span>When it all began 💬</span>
@@ -134,44 +105,55 @@
                 </div>
             </div>
 
-            <button class="btn-reset" onclick="resetEverything()">End the Fight & Hug ❤️</button>
+            <button class="btn-reset" onclick="revealMemories()">End the Fight & Embrace ❤️</button>
         </div>
 
-        <div id="successContent">
-            <div style="font-size: 70px; margin-bottom: 20px;">♾️❤️♾️</div>
-            <h2 style="color: #2ecc71; font-size: 2.2rem; font-family: 'Dancing Script', cursive;">Always Together</h2>
-            <p style="font-size: 1.2rem; color: #555;">Our bond is unbreakable, Skyla.<br>Thank you for being mine.</p>
+        <div id="memory-gallery">
+            <h2 style="color: #2ecc71; font-size: 2.2rem;">Salamat, سكايلا skyka! 💖</h2>
+            <p style="font-size: 1.1rem; color: #666;">Looking back at our beautiful moments...</p>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="sky.jpeg"></div>
+                <div class="gallery-item"><img src="ski.jpeg"></div>
+                <div class="gallery-item"><img src="ski1.jpeg"></div>
+                <div class="gallery-item"><img src="skyla.jpeg"></div>
+            </div>
+            <p style="margin-top: 30px; font-size: 1.2rem; font-weight: bold; color: var(--accent);">Pangako, hinding-hindi kita iiwan. ❤️</p>
         </div>
 
-        <div class="signature">
-            From <b>IBRAHIM</b> with love <span class="heart">❤</span>
-        </div>
+        <div class="signature">Made with ❤️ by <b>IBRAHIM</b></div>
     </div>
 
     <script>
-        function resetEverything() {
-            document.getElementById('mainView').style.display = 'none';
-            document.getElementById('successContent').style.display = 'block';
-            document.body.style.background = "#f0fff4";
-            
-            // تأثير انفجار القلوب عند الصلح
-            for(let i=0; i<25; i++) {
-                const h = document.createElement('div');
-                h.innerHTML = '❤️';
-                h.style.position = 'fixed';
-                h.style.left = Math.random() * 100 + 'vw';
-                h.style.bottom = '-5vh';
-                h.style.fontSize = (Math.random() * 20 + 20) + 'px';
-                h.style.transition = '3.5s ease-out';
-                h.style.zIndex = '1000';
-                document.body.appendChild(h);
-                setTimeout(() => {
-                    h.style.transform = `translateY(-110vh) rotate(${Math.random() * 360}deg)`;
-                    h.style.opacity = '0';
-                }, 50);
-                setTimeout(() => h.remove(), 3500);
+        function updateTimer() {
+            const start = new Date("October 10, 2025 00:00:00").getTime();
+            const now = new Date().getTime();
+            const diff = now - start;
+            if (diff < 0) { document.getElementById("timer").innerHTML = "Our story starts soon!"; return; }
+            const d = Math.floor(diff / 86400000), h = Math.floor((diff % 86400000) / 3600000), m = Math.floor((diff % 3600000) / 60000), s = Math.floor((diff % 60000) / 1000);
+            document.getElementById("timer").innerHTML = `${d}d ${h}h ${m}m ${s}s`;
+        }
+        setInterval(updateTimer, 1000); updateTimer();
+
+        function revealMemories() {
+            document.getElementById('main-content').style.display = 'none';
+            document.getElementById('memory-gallery').style.display = 'block';
+            window.scrollTo(0, 0);
+            for(let i=0; i<50; i++) {
+                setTimeout(() => createSingleRose('💖'), i * 80);
             }
         }
+
+        function createSingleRose(symbol) {
+            const rose = document.createElement('div');
+            rose.className = 'rose';
+            rose.innerHTML = symbol || '🌸';
+            rose.style.left = Math.random() * 100 + 'vw';
+            rose.style.fontSize = Math.random() * 25 + 15 + 'px';
+            rose.style.animationDuration = Math.random() * 3 + 3 + 's';
+            document.body.appendChild(rose);
+            setTimeout(() => rose.remove(), 5000);
+        }
+        setInterval(() => createSingleRose(['🌸', '🌹', '✨'][Math.floor(Math.random()*3)]), 600);
     </script>
 </body>
 </html>
